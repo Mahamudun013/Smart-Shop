@@ -16,13 +16,13 @@
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Info<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Admin Info<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ url('/user/add')}}">Add User</a>
+                                    <a href="{{ url('/user/add')}}">Add Admin</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/user/manage')}}">Manage User</a>
+                                    <a href="{{ url('/user/manage')}}">Manage Admin</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -85,21 +85,28 @@
                             <a href="#"><i class="fa fa-shopping-cart"></i>  Sales<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ url('#')}}"> Orders</a>
+                                    <a href="{{ url('/order/manage')}}"> Orders</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('#')}}"> Shipments</a>
+                                    <a href="{{ url('/shipment/manage')}}"> Shipments</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="#"><i class="fa fa-line-chart"></i>  Reports<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ url('/report/low-stock')}}"> Low stock</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/report/best-seller')}}"> Best Seller</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
+
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

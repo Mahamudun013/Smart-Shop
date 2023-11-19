@@ -16,13 +16,14 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('email');
-            $table->string('password');
-            $table->text('address');
-            $table->string('phoneNumber');
-            $table->string('districtName');
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('password', 60)->nullable();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->text('address')->nullable();
+            $table->string('phoneNumber')->nullable();
+            $table->string('districtName')->nullable();
             $table->timestamps();
 
 

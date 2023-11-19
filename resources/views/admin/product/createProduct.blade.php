@@ -9,7 +9,7 @@ Add Product
 <div class="row">
 
 	<div class="col-lg-12">
-		<h3>Add a new product</h3>  
+		<h3>Add a new product</h3>
 	<hr>
 
     <h3 class="text-center text-success">{{ Session::get('message') }}</h3>
@@ -100,7 +100,18 @@ Add Product
         </div>
 
         <div class="form-group">
-        	<div class="col-sm-offset-2 col-sm-10">
+          <label for="email" class="col-sm-2 control-label" >Special Offers</label>
+            <div class="col-sm-10">
+            <select class="form-control" name="specialOffer">
+              <option>Select Offers Status</option>
+              <option value="1">Set To Special Offer</option>
+              <option value="0">Not yet set</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+        	<div class="col-sm-offset-2 col-sm-10"><br>
         		<button type="submit" name="btn" class="btn btn-success btn-block">Save Product Info</button>
         	</div>
         </div>	

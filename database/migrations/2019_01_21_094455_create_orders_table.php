@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('customerId');
             $table->integer('shippingId');
             $table->float('orderTotal',10,2);
-            $table->string('orderStatus')->default('pending');
+            $table->string('orderStatus')->default('Pending');
             $table->timestamps();
         });
     }

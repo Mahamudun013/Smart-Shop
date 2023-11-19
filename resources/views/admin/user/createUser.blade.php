@@ -49,7 +49,7 @@ Add User
            <div class="form-group">
               <label for="password" class="col-sm-2 control-label" >Password</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" name="password" id="password">
+                  <input type="text" class="form-control" name="password" id="password">
                   <span class="text-danger">{{ $errors->has('password') ? $errors->first('password'):''}}
                   </span>
                 </div>

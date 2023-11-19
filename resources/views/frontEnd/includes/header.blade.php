@@ -23,11 +23,13 @@
 				<div class="section_room">
 					<select id="country" onchange="change_country(this.value)" class="frm-field required">
 						<option value="null">All categories</option>
-						<option value="null">Electronics</option>     
-						<option value="AX">kids Wear</option>
-						<option value="AX">Men's Wear</option>
-						<option value="AX">Women's Wear</option>
-						<option value="AX">Watches</option>
+						
+						@foreach($publishedCategories as $publishedCategory)
+						<option value="{{$publishedCategory->id}}">
+							{{$publishedCategory->categoryName}}
+						</option>
+						@endforeach
+						
 					</select>
 				</div>
 				<div class="sear-sub">
@@ -55,9 +57,9 @@
 
 		<?php   } ?>
 				
-				<li><a class="fb" title="Facebook" href="https://facebook.com/smart.shop"></a></li>
-				<li><a class="twi" title="Twitter" href="#"></a></li>
-				<li><a class="insta" title="Instagram" href="#"></a></li>
+				<li><a class="fb" title="Facebook" href="https://facebook.com/smart.shop" target="_blank"></a></li>
+				<li><a class="twi" title="Twitter" href="https://twitter.com/" target="_blank"></a></li>
+				<li><a class="insta" title="Instagram" href="https://www.instagram.com/smart.shop" target="_blank"></a></li>
 		 <?php
 				//$loginId=Session::get('customerId');
 				if($loginId != null){ ?>

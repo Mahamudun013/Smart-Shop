@@ -21,16 +21,17 @@ Manage Product
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-hover text-center" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Product Name</th>
-                                        <th>Category Name</th>
-                                        <th>Manufacturer Name</th>
-                                        <th>Product Price</th>
-                                        <th>Product Quantity</th>
-                                        <th>Publication Status</th>
+                                        <th>Image</th>
+                                        <th>Category</th>
+                                        <th>Manufacturer</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -39,6 +40,8 @@ Manage Product
                                     <tr class="odd gradeX">
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->productName }}</td>
+                                        <td> <img src="{{asset($product->productImage)}}" height="80" 
+                                            width="80"></td>
                                         <td>{{ $product->categoryName }}</td>
                                         <td>{{ $product->manufacturerName }}</td>
                                         <td>TK. {{ $product->productPrice }}</td>
@@ -69,7 +72,6 @@ Manage Product
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
 
 
 @endsection

@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('orderId');
             $table->string('paymentType');
-            $table->string('paymentStatus')->default('pending');
+            $table->string('paymentStatus')->default('Pending');
             $table->timestamps();
         });
     }

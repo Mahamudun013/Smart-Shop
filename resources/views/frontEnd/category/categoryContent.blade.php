@@ -299,11 +299,11 @@
 
 			@foreach($publishedCategoryProducts as $publishedCategoryProduct)
 
-			<div class="col-md-3 product-men">
+			<div class="col-md-3 product-men" style="margin-bottom: 30px;">
 				<div class="men-pro-item simpleCart_shelfItem">
 					<div class="men-thumb-item">
-						<img src="{{asset($publishedCategoryProduct->productImage)}}" alt="" class="pro-image-front" height="220" width="220">
-						<img src="{{asset($publishedCategoryProduct->productImage)}}" alt="" class="pro-image-back" height="220" width="220">
+						<img src="{{asset($publishedCategoryProduct->productImage)}}" alt="" class="pro-image-front" height="250" width="220">
+						<img src="{{asset($publishedCategoryProduct->productImage)}}" alt="" class="pro-image-back" height="250" width="220">
 							<div class="men-cart-pro">
 								<div class="inner-men-cart-pro">
 									<a href="{{ url('/product-details/'.$publishedCategoryProduct->id)}}" 
@@ -317,6 +317,10 @@
 						<div class="info-product-price">
 							<span class="item_price">TK. {{$publishedCategoryProduct->productPrice}}/-</span>
 						</div>
+                        
+                    @if($publishedCategoryProduct->productQuantity < 1)
+                         <button type="button" class="item_add single-item hvr-outline-out button2 text-danger"><b>Out of Stock</b></button>
+                    @else
 
 						{!! Form::open(['url'=>'/cart/add','method'=>'POST']) !!}
 							<div>
@@ -325,6 +329,8 @@
 								<button type="submit" class="item_add single-item hvr-outline-out button2" >Add to cart</button>
 							</div>
 						{!! Form::close() !!}
+
+					@endif
 													
 					</div>
 				</div>

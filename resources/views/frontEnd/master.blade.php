@@ -35,6 +35,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="{{ asset('public/frontEnd/js/jquery.easing.min.js') }}"></script>
+
+<!-- tinymce CDN link -->
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+
+<style>
+   @yield('cssstyle')
+</style>
+
 </head>
 <body>
 <!-- header -->
@@ -64,13 +73,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<h3>Sign up here...</h3>
 								{!! Form::open(['url'=>'/customer/sign-up','method'=>'POST']) !!}
 											<div class="sign-up">
-												<h4>First Name :</h4>
-												<input type="text" name="firstName" placeholder="Enter your first name" required>	
+												<h4>Name :</h4>
+												<input type="text" name="name" placeholder="Enter your name" required>
+												<span class="text-danger">
+                                                 {{ $errors->has('name') ? $errors->first('name'):''}}
+                                                </span>
 											</div>
-											<div class="sign-up">
-												<h4>Last Name :</h4>
-												<input type="text" name="lastName" placeholder="Enter your last name" required>
-											</div>
+			
 											<div class="sign-up">
 												<h4>Email :</h4>
 												<input type="text" name="email" placeholder="Enter your email" required>
@@ -81,40 +90,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="sign-up">
 												<h4>Password :</h4>
 												<input type="password" name="password" placeholder="Enter your password" required>
+												<span class="text-danger">
+                                                 {{ $errors->has('password') ? $errors->first('password'):''}}
+                                                </span>
 											</div>
-											<div class="sign-up">
-												<h4>Address :</h4>
-												<input type="text" name="address" placeholder="Enter your address" required>
-												
-											</div>
-											<div class="sign-up">
-												<h4>Phone :</h4>
-												<input type="text" name="phoneNumber" placeholder="Enter your phone number" required>
-												
-											</div>
-
-											<div class="sign-up">
-												<h4>District :</h4>
-						                        <select class="form-control" name="districtName" required>
-						                            <option>--- Select District Name ---</option>
-						                            <option value="dhaka">Dhaka</option>
-						                            <option value="faridpur">Faridpur</option>
-						                            <option value="gazipur">Gazipur</option>
-						                            <option value="rangpur">Rangpur</option>
-						                            <option value="lalmonirhat">Lalmonirhat</option>
-						                            <option value="dinajpur">Dinajpur</option>
-						                            <option value="gaibandha ">Gaibandha</option>
-						                            <option value="kurigram ">Kurigram</option>
-						                        </select>
-											</div><br>
-
+											
 											<div class="sign-up">
 												<input type="submit" value="REGISTER NOW" >
 											</div>
-
-											<hr>
-											
+											<hr>	
 								{!! Form::close() !!}
+
+								<div class="form-group">
+				                            	<h3>Social Account Sign-up</h3>
+				                              <div class="col-md-6 ">
+				                                 <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook-lg"><i class="fa fa-facebook-square"></i> Facebook</a>
+				                  
+				                                 <a href="{{ url('/auth/google') }}" class="btn btn-google"><i class="fa fa-google-plus-square"></i> Google</a>
+
+				                                 <a href="{{ url('/auth/github') }}" class="btn btn-github"><i class="fa fa-github-square"></i> Github</a>
+				                    
+				                                  <a href="{{ url('/auth/twitter') }}" class="btn btn-twitter"><i class="fa fa-twitter-square"></i> Twitter</a>
+				                              </div>
+				                         </div>
 									</div>
 
 									<div class="login-right">
@@ -129,11 +127,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<h4>Email :</h4>
 												<input type="text" name="email" placeholder="Enter your email" required>
 											</div>
+
 											<div class="sign-in">
 												<h4>Password :</h4>
 												<input type="password" name="password" placeholder="Enter your password" required>
+							
 												<a href="#">Forgot password?</a>
 											</div>
+											
 											<div class="single-bottom">
 												<input type="checkbox"  id="brand" value="">
 												<label for="brand"><span></span>Remember Me.</label>
@@ -143,18 +144,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</div>
 									{!! Form::close() !!}
 										<hr>
-
+                   
 										 <div class="form-group">
-				                            	<h3>Social Sign-up & Sign-in</h3>
+				                            	<h3>Social Account Sign-in</h3>
 				                              <div class="col-md-6 ">
-				                                 <a href="{{ url('#') }}" class="btn btn-facebook-lg"><i class="fa fa-facebook-square"></i> Facebook</a>
+				                                 <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook-lg"><i class="fa fa-facebook-square"></i> Facebook</a>
 				                  
-				                                 <a href="{{ url('#') }}" class="btn btn-google"><i class="fa fa-google-plus-square"></i> Google</a>
+				                                 <a href="{{ url('/auth/google') }}" class="btn btn-google"><i class="fa fa-google-plus-square"></i> Google</a>
+
+				                                 <a href="{{ url('/auth/github') }}" class="btn btn-github"><i class="fa fa-github-square"></i> Github</a>
 				                    
 				                                  <a href="{{ url('/auth/twitter') }}" class="btn btn-twitter"><i class="fa fa-twitter-square"></i> Twitter</a>
-
 				                              </div>
-				                            </div>
+				                         </div>
 									</div>
 										
 									<div class="clearfix"></div>

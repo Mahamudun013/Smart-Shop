@@ -28,6 +28,8 @@ class ProductController extends Controller
     		'productImage'=>'required',
     	]);
 
+
+
     	$productImage=$request->file('productImage');
     	$name=$productImage->getClientOriginalName();
     	$uploadPath='public/productImage/';
@@ -37,8 +39,8 @@ class ProductController extends Controller
 
     	return redirect('/product/add')->with('message','Product Info Added Successfully!');
 
-
     }
+
 
     protected function saveProductInfo($request,$imageUrl){
 
@@ -52,6 +54,7 @@ class ProductController extends Controller
     	$product->productLongDescription=$request->productLongDescription;
     	$product->productImage=$imageUrl;
     	$product->publicationStatus=$request->publicationStatus;
+        $product->specialOffer=$request->specialOffer;
     	$product->save();
     }
 
@@ -62,7 +65,7 @@ class ProductController extends Controller
     	$products=DB::table('products')
     	          ->join('categories','products.categoryId','=','categories.id')
     	          ->join('manufacturers','products.manufacturerId','=','manufacturers.id')
-    	          ->select('products.id','products.productName','products.productPrice','products.productQuantity','products.publicationStatus','categories.categoryName','manufacturers.manufacturerName')
+    	          ->select('products.id','products.productName','products.productImage','products.productPrice','products.productQuantity','products.publicationStatus','categories.categoryName','manufacturers.manufacturerName')
     	          ->get();
 
 
@@ -125,6 +128,8 @@ class ProductController extends Controller
 
         $productImage=$request->file('productImage');
 
+
+
         if($productImage != null){
 
         $name=$productImage->getClientOriginalName();
@@ -132,9 +137,10 @@ class ProductController extends Controller
         $productImage->move($uploadPath,$name);
         $imageUrl=$uploadPath.$name;
         }
-
-        else{
-         $imageUrl=$product->productImage;
+        
+        else
+        {
+          $imageUrl=$product->productImage;
         }
 
         $product->productName=$request->productName;
@@ -146,6 +152,7 @@ class ProductController extends Controller
         $product->productLongDescription=$request->productLongDescription;
         $product->productImage=$imageUrl;
         $product->publicationStatus=$request->publicationStatus;
+        $product->specialOffer=$request->specialOffer;
         $product->save();
 
         return redirect('/product/manage')->with('message','Product Info Updated Successfully!');

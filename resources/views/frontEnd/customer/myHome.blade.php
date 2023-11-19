@@ -6,9 +6,6 @@ My account
 
 @section('mainContent')
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
-
 <br><br>
 <div class="container">
     <div class="row">
@@ -16,10 +13,10 @@ My account
             <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{{ url('#')}}"><i class="fa fa-user fa-fw"></i> Customer Info</a>
+                            <a href="{{ url('/customer/home')}}"><i class="fa fa-user fa-fw"></i> Customer Info</a>
                         </li>
                         <li>
-                            <a href="{{ url('#')}}"><i class="fa fa-shopping-cart"></i> My Orders</a>
+                            <a href="{{ url('/customer/orders')}}"><i class="fa fa-shopping-cart"></i> My Orders</a>
                         </li>
                     </ul>
             </div> 
@@ -34,15 +31,10 @@ My account
             <div class="well box box-primary">
             {!! Form::open(['url'=>'/customer/info-update','method'=>'POST','name'=>'updateCustomerInfo']) !!}
                     <div class="form-group">
-                      <label for="firstName">First Name</label>
-                      <input type="text" name="firstName" class="form-control" 
-                      value="{{$customerInfo->firstName}}" required>
+                      <label for="name">Name</label>
+                      <input type="text" name="name" class="form-control" 
+                      value="{{$customerInfo->name}}" required>
                       <input type="hidden" name="customerId" value="{{$customerInfo->id}}">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="lastName">Last Name</label>
-                      <input type="text" name="lastName" class="form-control" value="{{$customerInfo->lastName}}"  required>
                     </div>
 
                     <div class="form-group">
@@ -57,26 +49,26 @@ My account
 
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <textarea name="address" class="form-control" required>{{$customerInfo->address}}
+                        <textarea name="address" class="form-control" required="">{!! $customerInfo->address !!}
                         </textarea>
                     </div>
                     <div class="form-group">
                         <label for="phoneNumber">Phone Number</label>
-                        <input type="number" name="phoneNumber" class="form-control" value="{{$customerInfo->phoneNumber}}" required>
+                        <input type="text" name="phoneNumber" class="form-control" placeholder="Enter phone number" value="{{$customerInfo->phoneNumber}}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="districtName">District Name</label>
-                        <select class="form-control" name="districtName">
+                        <select class="form-control" name="districtName" required="">
                             <option>--- Select District Name ---</option>
-                            <option value="dhaka">Dhaka</option>
-                            <option value="faridpur">Faridpur</option>
-                            <option value="gazipur">Gazipur</option>
-                            <option value="rangpur">Rangpur</option>
-                            <option value="lalmonirhat">Lalmonirhat</option>
-                            <option value="dinajpur">Dinajpur</option>
-                            <option value="gaibandha ">Gaibandha</option>
-                            <option value="kurigram ">Kurigram</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Faridpur">Faridpur</option>
+                            <option value="Gazipur">Gazipur</option>
+                            <option value="Rangpur">Rangpur</option>
+                            <option value="Lalmonirhat">Lalmonirhat</option>
+                            <option value="Dinajpur">Dinajpur</option>
+                            <option value="Gaibandha">Gaibandha</option>
+                            <option value="Kurigram">Kurigram</option>
                         </select>
                     </div>
 

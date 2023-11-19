@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('productLongDescription');
             $table->text('productImage');
             $table->tinyInteger('publicationStatus');
+            $table->tinyInteger('specialOffer');
             $table->timestamps();
         });
     }

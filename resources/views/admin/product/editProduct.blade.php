@@ -105,13 +105,24 @@ Edit Product
         </div>
 
         <div class="form-group">
+          <label for="email" class="col-sm-2 control-label" >Special Offers</label>
+            <div class="col-sm-10">
+            <select class="form-control" name="specialOffer">
+              <option>Select Offers Status</option>
+              <option value="1">Set To Special Offer</option>
+              <option value="0">Not yet set</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group">
         	<div class="col-sm-offset-2 col-sm-10">
         		<button type="submit" name="btn" class="btn btn-success btn-block">Update Product Info</button>
         	</div>
         </div>	
 
 		
-         {!! Form::close() !!}
+    {!! Form::close() !!}
 
 		</div>
 	</div>
@@ -128,6 +139,10 @@ Edit Product
 
 <script>
     document.forms['editProductForm'].elements['publicationStatus'].value={{ $product->publicationStatus }}
+</script>
+
+<script>
+    document.forms['editProductForm'].elements['specialOffer'].value={{ $product->specialOffer }}
 </script>
 
 @endsection

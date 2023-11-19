@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin-Login</title>
+    <title>Admin Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('public/admin/')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title text-center"><b>ADMIN LOGIN</b></h3>
                     </div>
                     <div class="panel-body">
                         

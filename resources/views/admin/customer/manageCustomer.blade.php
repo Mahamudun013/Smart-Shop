@@ -26,10 +26,10 @@ Manage Customer
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Customer Name</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>    
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,14 +37,11 @@ Manage Customer
                                     @foreach($customers as $customer)
                                     <tr class="odd gradeX">
                                         <td>{{$customer->id}}</td>
-                                        <td>{{$customer->firstName}}</td>
-                                        <td>{{$customer->lastName}}</td>
+                                        <td>{{$customer->name}}</td>
                                         <td>{{$customer->email}}</td>
-                                        <td>{{$customer->phoneNumber}}</td>   
+                                        <td>{!! $customer->address !!}</td>
+                                        <td>{{$customer->phoneNumber}}</td> 
                                         <td>
-                                            <a href="{{ url('/customer/view/'.$customer->id)}}" class="btn btn-primary" title="Customer View">
-                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                            </a>
                                             <a href="{{ url('/customer/edit/'.$customer->id)}}" class="btn btn-success" title="Customer Edit">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                             </a>

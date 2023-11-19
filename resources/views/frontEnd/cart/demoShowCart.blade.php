@@ -1,7 +1,7 @@
 @extends('frontEnd.master')
 
 @section('title')
-Cart Show
+Shopping Cart
 @endsection
 
 @section('mainContent')
@@ -21,6 +21,7 @@ Cart Show
 				<thead>
 					<tr>
 						<th>Remove</th>
+						<th>Product Image</th>
 						<th>Product Name</th>
 						<th>Quantity</th>
 						<th>Price</th>
@@ -35,22 +36,27 @@ Cart Show
 								<a href="{{ url('/cart/delete/'.$cartProduct->rowId)}}" class="btn btn-danger">
 									<span class="glyphicon glyphicon-trash"></span>
 								</a>
-								
 							</div>
 						</td>
-						<td class="invert">{{$cartProduct->name}}</td>
+						<td class="invert">
+						<img src="{{asset($cartProduct->options['productImage'])}}" height="80" width="80">
+						</td>
+						<td class="invert">
+							<b>{{$cartProduct->name}}</b>
+						</td>
                         <td class="invert">
 							 <div class="quantity">
-							 	<form>
+							 	{!! Form::open(['url'=>'/cart/update','method'=>'POST']) !!}
+							 	    <input type="hidden" name="rowId" value="{{$cartProduct->rowId}}">
 							 		<div class="input-group">
 							 			<input type="number" name="qty" class="form-control" value="{{$cartProduct->qty}}">
 							 			<span class="input-group-btn">
 							 				<button type="submit" name="btn" class="btn btn-primary">
 							 					<span class="glyphicon glyphicon-upload"></span>
 							 				</button>
-							 			</span>		
+							 			</span>	
 							 		</div>
-							 	</form>
+							 	{!! Form::close() !!}
 								
 							</div>
 						</td>
@@ -83,7 +89,7 @@ Cart Show
 
 				<?php } else if($customerId != null){  ?>
 
-					      <a href="{{ url('/checkout/shipping')}}">  
+					      <a href="{{ url('/checkout/billing')}}">
 					      <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 					      Checkout
 					      </a>
@@ -104,7 +110,7 @@ Cart Show
 				<div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
 					<h4>Shopping basket</h4>
 					<ul>
-						<li>Total<i>-</i> <span>TK. {{$total}}</span></li>
+						<li>Total Amount<i>-</i> <span>TK. {{$total}}</span></li>
 						<?php
 						Session::put('orderTotal',$total);
 						?>

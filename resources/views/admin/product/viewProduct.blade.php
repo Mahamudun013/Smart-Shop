@@ -65,6 +65,10 @@ View Product
                                         <th>Publication Status</th>
                                         <th>{{ $product->publicationStatus==1 ? 'Published':'Unpublished'}}</th>
                                     </tr>
+                                    <tr>
+                                        <th>Special Offers</th>
+                                        <th>{{ $product->specialOffer==1 ? 'Yes':'Not yet set'}}</th>
+                                    </tr>
 
                                    
                             </table>

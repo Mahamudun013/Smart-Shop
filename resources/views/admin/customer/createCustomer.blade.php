@@ -17,20 +17,11 @@ Add Customer
         {!! Form::open(['url'=>'/customer/save','method'=>'POST','class'=>'form-horizontal']) !!}
 		
       		<div class="form-group">
-              <label for="firstName" class="col-sm-2 control-label" >First Name</label>
+              <label for="name" class="col-sm-2 control-label" >Customer Name</label>
                 <div class="col-sm-10">
-          	      <input type="text" class="form-control" name="firstName" id="firstName">
+          	      <input type="text" class="form-control" name="name" id="name">
           	      <span class="text-danger">
-                    {{ $errors->has('firstName') ? $errors->first('firstName'):''}}
-                  </span>
-                </div>
-           </div>
-           <div class="form-group">
-              <label for="lastName" class="col-sm-2 control-label" >Last Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="lastName" id="lastName">
-                  <span class="text-danger">
-                    {{ $errors->has('lastName') ? $errors->first('lastName'):''}}
+                    {{ $errors->has('name') ? $errors->first('name'):''}}
                   </span>
                 </div>
            </div>
@@ -77,14 +68,14 @@ Add Customer
                      <div class="col-sm-10">
                         <select class="form-control" name="districtName">
                             <option>--- Select District Name ---</option>
-                            <option value="dhaka">Dhaka</option>
-                            <option value="faridpur">Faridpur</option>
-                            <option value="gazipur">Gazipur</option>
-                            <option value="rangpur">Rangpur</option>
-                            <option value="lalmonirhat">Lalmonirhat</option>
-                            <option value="dinajpur">Dinajpur</option>
-                            <option value="gaibandha ">Gaibandha</option>
-                            <option value="kurigram ">Kurigram</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Faridpur">Faridpur</option>
+                            <option value="Gazipur">Gazipur</option>
+                            <option value="Rangpur">Rangpur</option>
+                            <option value="Lalmonirhat">Lalmonirhat</option>
+                            <option value="Dinajpur">Dinajpur</option>
+                            <option value="Gaibandha">Gaibandha</option>
+                            <option value="Kurigram">Kurigram</option>
                         </select>
                         <span class="text-danger">{{ $errors->has('districtName') ? $errors->first('districtName'):''}}
                   </span>

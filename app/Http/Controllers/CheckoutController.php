@@ -6,46 +6,40 @@ use App\Customer;
 use App\Order;
 use App\OrderDetail;
 use App\Payment;
+use App\Product;
 use App\Shipping;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Cart;
 
 class CheckoutController extends Controller
 {
+    
     public function index(){
 
     	return view('frontEnd.checkout.checkoutContent');
     }
 
+
     public function customerRegistration(Request $request){
 
     	$this->validate($request,[
-         'firstName'=>'required',
-         'lastName'=>'required',
-         'email'=>'required',
-         'password'=>'required',
-         'address'=>'required',
-         'phoneNumber'=>'required',
-         'districtName'=>'required',
-         
+         'name'=>'required',
+         'email'=>'required|string|email|max:255|unique:customers',
+         'password'=>'required', 
     	]);
 
     	$customer=new Customer();
-    	$customer->firstName=$request->firstName;
-    	$customer->lastName=$request->lastName;
+    	$customer->name=$request->name;
     	$customer->email=$request->email;
     	$customer->password=$request->password;
-    	$customer->address=$request->address;
-    	$customer->phoneNumber=$request->phoneNumber;
-    	$customer->districtName=$request->districtName;
     	$customer->save();
 
     	$customerId=$customer->id;
     	Session::put('customerId',$customerId);
 
 
-    	return redirect('/checkout/shipping');
+    	return redirect('/checkout/billing');
     }
 
 
@@ -60,8 +54,7 @@ class CheckoutController extends Controller
             
             Session::put('customerId',$authCustomer->id);
     
-
-            return redirect('/checkout/shipping');
+            return redirect('/checkout/billing');
         }
         else{
 
@@ -71,15 +64,58 @@ class CheckoutController extends Controller
     }
 
 
+    public function showBillingForm(){
+
+        $customerId=Session::get('customerId');
+        $customerById=Customer::where('id',$customerId)->first();
+
+       return view('frontEnd.checkout.billingContent',['customerById'=>$customerById]);
+    }
+
+
+    public function saveBillingInfo(Request $request){
+
+       // $customerId=Session::get('customerId');
+
+        $customerId=$request->billingCustomerId;
+        $billing=Customer::find($customerId);
+
+        $this->validate($request,[
+         'address'=>'required',
+         'phoneNumber'=>'required',
+         'districtName'=>'required',
+        ]);
+
+        $billing->address=$request->address;
+        $billing->phoneNumber=$request->phoneNumber;
+        $billing->districtName=$request->districtName;
+        $billing->save();
+
+        return redirect('/checkout/shipping');
+        
+    }
+
+
     public function showShippingForm(){
 
     	$customerId=Session::get('customerId');
-    	$customerById=Customer::find($customerId);
+    	//$customerById=Customer::find($customerId);
+        $customerById=Customer::where('id',$customerId)->first();
+
 
     	return view('frontEnd.checkout.shippingContent',['customerById'=>$customerById]);
     }
 
+
     public function saveShippingInfo(Request $request){
+
+        $this->validate($request,[
+         'fullName'=>'required',
+         'email'=>'required|string|email|max:255',
+         'address'=>'required',
+         'phoneNumber'=>'required',
+         'districtName'=>'required',
+        ]);
 
     	$shipping=new Shipping();
     	$shipping->fullName=$request->fullName;
@@ -124,12 +160,12 @@ class CheckoutController extends Controller
     		$payment->paymentType= $paymentType;
     		$payment->save();
 
-    		$orderDetail= new OrderDetail();
+    		
     		$cartProducts=Cart::content();
 
-    		
     		foreach ($cartProducts as $cartProduct) {
-
+                
+                $orderDetail= new OrderDetail(); 
 	    		$orderDetail->orderId= Session::get('orderId');
 	    		$orderDetail->productId=$cartProduct->id;
 	    		$orderDetail->productName=$cartProduct->name;
@@ -137,12 +173,18 @@ class CheckoutController extends Controller
 	    		$orderDetail->productQuantity=$cartProduct->qty;
 	    		$orderDetail->save();
 
+            //reduce product quantity from store
+                $reduceQty=Product::find($cartProduct->id);
+                $value=$reduceQty->productQuantity;
+                $reduceQty->productQuantity=($value-($cartProduct->qty));
+                $reduceQty->save();
+
                 // remove from cart
-               // Cart::remove($cartProduct->rowId);
+                Cart::remove($cartProduct->rowId);
     		}
 
     		
-    		return redirect('/checkout/my-home');
+    		return redirect('/checkout/confirmation');
 
     	}
 
@@ -153,7 +195,7 @@ class CheckoutController extends Controller
 
     	elseif ($paymentType=='paypal') {
     		
-    		return "Under Construction Paypal Payment. Please, use Cash on Delivery";
+    		return redirect('/payment');
     	}
 
     }
@@ -163,4 +205,6 @@ class CheckoutController extends Controller
 
     	return view('frontEnd.customer.customerHome');
     }
+
+    
 }

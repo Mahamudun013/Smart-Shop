@@ -70,6 +70,12 @@ Product Details
 						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
 						<input type="submit" value="Check">
 					</div>
+                                        
+                @if($productById->productQuantity < 1)
+                        <hr><br>
+                        <button type="button" class="item_add single-item hvr-outline-out button2 text-danger"><b>Out of Stock</b></button>
+
+                @else
 
 					{!! Form::open(['url'=>'/cart/add','method'=>'POST']) !!}
 						<div class="color-quality">
@@ -97,6 +103,8 @@ Product Details
 						<button type="submit" class="item_add single-item hvr-outline-out button2" >Add to cart</button>
 					    </div>
                     {!! Form::close() !!}
+
+                @endif
 						
 		</div>
 				<div class="clearfix"> </div>

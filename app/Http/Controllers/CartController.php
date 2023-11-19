@@ -18,14 +18,31 @@ class CartController extends Controller
     	Cart::add([
     		'id'=>$productId,
     		'name'=>$productById->productName,
+            'options' =>['productImage' =>$productById->productImage],
     		'price'=>$productById->productPrice,
-    		'qty'=>$request->qty
-
+    		'qty'=>$request->qty,
+            //['productImage'=>$productById->productImage]
     	]);
 
-    	return redirect('cart/show');
+
+         return redirect('cart/show');
 
     }
+
+
+    public function updateToCart(Request $request){
+
+        $rowId=$request->rowId;
+        $qty= $request->qty;
+
+        Cart::update($rowId,$qty);
+
+
+        return redirect('cart/show');
+
+    }
+
+
 
     public function showCart(){
     	
@@ -35,7 +52,8 @@ class CartController extends Controller
 
     	//return view('frontEnd.cart.showCart',['cartProducts'=>$cartProducts]);
 
-    	return view('frontEnd.cart.demoShowCart',['cartProducts'=>$cartProducts,'cartCount'=>$cartCount]);
+       return view('frontEnd.cart.demoShowCart',['cartProducts'=>$cartProducts,'cartCount'=>$cartCount]);
+
     }
 
 
