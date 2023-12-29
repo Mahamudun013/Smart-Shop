@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+// new api route by hassan
+Route::post('/user/add', function (Request $request) {
+    // return $request->all();
+
+    return $request->intersect(['username', 'password']);
+});
